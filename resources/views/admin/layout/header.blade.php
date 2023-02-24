@@ -1,4 +1,4 @@
-<title>SB Admin 2 - Dashboard</title>
+<title>Dashboard -  Laravel 10</title>
 
 <!-- Custom fonts for this template-->
 <link href="{{ url('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -6,3 +6,4 @@
 
 <!-- Custom styles for this template-->
 <link href="{{ url('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<link href="{{ url('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
