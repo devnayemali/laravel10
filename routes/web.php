@@ -27,6 +27,8 @@ Route::post('/user', [UserController::class, 'store'])->name('users.store');
 Route::get('/task', [TaskController::class, 'index'])->name('task');
 Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
 Route::post('/task', [TaskController::class, 'store'])->name('task.store');
+Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show')->where('id', '[0-9]+');
+Route::get('/task/{id}/edit', [TaskController::class, 'edit'])->name('task.edit')->where('id', '[0-9]+');
 
 
 

@@ -1,4 +1,4 @@
-<title>Dashboard -  Laravel 10</title>
+<title>@yield('page_title')</title>
 
 <!-- Custom fonts for this template-->
 <link href="{{ url('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

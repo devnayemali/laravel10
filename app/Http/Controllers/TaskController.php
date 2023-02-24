@@ -13,7 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::with('user')->get();
         return view('admin.task.index', compact('tasks'));
     }
 
@@ -35,11 +35,11 @@ class TaskController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'status' => ['required'],
-            'user_id' => ['required']
+            'user_id' => ['required'],
         ]);
 
         Task::create($validatedData);
-
+        return redirect()->route('task');
 
     }
 
@@ -48,7 +48,8 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::with('user')->findOrFail($id);
+        return view('admin.task.show', compact('task'));
     }
 
     /**
@@ -56,7 +57,10 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $users = User::pluck('name','id');
+        $task = Task::findOrFail($id);
+        return view('admin.task.edit', compact('users', 'task'));
     }
 
     /**

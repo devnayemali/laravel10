@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('page_title', 'Create Task')
+@section('page_title', 'Edit Task')
 
 @section('content')
 <div class="container">
@@ -29,6 +29,22 @@
                             </ul>
                         </div>
                     @endif
+
+                    {!! Form::open() !!}
+
+                    {!! Form::label('title', 'Title', ['class' => 'form-label']) !!}
+                    {!! Form::text('title', null, ['class' => 'form-control mb-3', 'placeholder' => 'Enter Your Title']) !!}
+
+                    {!! Form::label('description', 'Description', ['class' => 'form-label']) !!}
+                    {!! Form::textarea('description', null , ['class' => 'form-control mb-3', 'placeholder' => 'Enter Your Description'] ) !!}
+
+                    {!! Form::label('status', 'Status', ['class' => 'form-label']) !!}
+                    {!! Form::select('status', [1 => 'Active', 0 => 'Inactive'], null, ['class' => 'form-control mb-3', 'placeholder' => 'Your Satus']); !!}
+
+                    {!! Form::label('user_id', 'Select User', ['class' => 'form-label']) !!}
+                    {!! Form::select('user_id', $users, null, ['class' => 'form-control mb-3', 'placeholder' => 'User Name']); !!}
+
+                    {!! Form::close() !!}
 
                     <form method="POST" action="{{ route('task.store') }}">
                         @csrf
