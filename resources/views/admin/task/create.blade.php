@@ -30,33 +30,14 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('task.store') }}">
-                        @csrf
-                        <div class="mb-3">
-                          <label class="form-label">Title</label>
-                          <input type="text" name="title" class="form-control">
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label">Description</label>
-                          <textarea class="form-control" rows="10" cols="20" name="description" placeholder="Enter Description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label">Select Status</label>
-                          <select class="form-control" name="status">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                          </select>
-                        </div>
-                        <div class="mb-3">
-                          <label class="form-label">Select User</label>
-                          <select class="form-control" name="user_id">
-                            @foreach ($users as $id => $user)
-                                <option value="{{ $id }}">{{ $user }}</option>
-                            @endforeach
-                          </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add New Task</button>
-                    </form>
+                    {!! Form::open(['route' => 'task.store', 'method' => 'post']) !!}
+
+                    @include('admin.task.form')
+
+                    {!! Form::button('<i class="fas fa-plus"></i> Add New Task', ['class' => 'btn btn-success mt-1', 'type' => 'submit']) !!}
+                    {!! Form::close() !!}
+
+
                 </div>
             </div>
         </div>

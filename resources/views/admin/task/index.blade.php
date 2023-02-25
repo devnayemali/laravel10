@@ -20,6 +20,13 @@
         
         <div class="card-body">
             <div class="table-responsive">
+
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        {{session('message')}}
+                    </div>
+                @endif
+
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>

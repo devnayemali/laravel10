@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskStoreRequest;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -20,27 +22,21 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        $users = User::pluck('name','id');
+        $users = User::pluck('name', 'id');
+        
         return view('admin.task.create', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TaskStoreRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => ['required'],
-            'description' => ['required'],
-            'status' => ['required'],
-            'user_id' => ['required'],
-        ]);
-
-        Task::create($validatedData);
+        Task::create($request->all());
+        session()->flash('message', 'Task Created Succefully');
         return redirect()->route('task');
-
     }
 
     /**
@@ -58,7 +54,7 @@ class TaskController extends Controller
     public function edit(string $id)
     {
 
-        $users = User::pluck('name','id');
+        $users = User::pluck('name', 'id');
         $task = Task::findOrFail($id);
         return view('admin.task.edit', compact('users', 'task'));
     }
@@ -68,7 +64,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $task = $request->all($id);
+        // $task->update();
     }
 
     /**

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-// User Route 
+// User Route
 Route::get('/user', [UserController::class, 'index'])->name('admin.users');
 Route::get('/user/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/user', [UserController::class, 'store'])->name('users.store');
@@ -29,6 +29,8 @@ Route::get('/task/create', [TaskController::class, 'create'])->name('task.create
 Route::post('/task', [TaskController::class, 'store'])->name('task.store');
 Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show')->where('id', '[0-9]+');
 Route::get('/task/{id}/edit', [TaskController::class, 'edit'])->name('task.edit')->where('id', '[0-9]+');
+Route::put('/task/{id}', [TaskController::class, 'update'])->name('task.update')->where('id', '[0-9]+');
+
 
 
 
